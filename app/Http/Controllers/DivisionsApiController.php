@@ -12,23 +12,23 @@ class DivisionsApiController extends Controller
         return Division::all();
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        request()->validate([
-            'name' => 'required',
+        $validated = $request->validate([
+            'name' => 'required|max:45',
             'level' => 'required',
         ]);
     
         return Division::create([
-            'name' => request('name'),
-            'level' => request('level'),
+            'name' => $validated['name'],
+            'level' => $validated['level'],
         ]);
     }
 
-    public function update(Division $division)
+    public function update(Request $request, Division $division)
     {
-        request()->validate([
-            'name' => 'required',
+        $validated = $request->validate([
+            'name' => 'required|max:45',
             'level' => 'required',
         ]);
     

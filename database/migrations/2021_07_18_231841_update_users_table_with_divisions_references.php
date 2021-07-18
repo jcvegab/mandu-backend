@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDivisionsTable extends Migration
+class UpdateUsersTableWithDivisionsReferences extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateDivisionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('divisions', function (Blueprint $table) {
-            $table->integer('id');
-            $table->string('name', 45);
-            $table->integer('level');
-            $table->integer('parent_id')->nullable();
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('division_id')->nullable();
+            $table->foreign('division_id')
+                    ->references('id')->on('divisions')
+                    ->onDelete('set null');
         });
     }
 
@@ -29,6 +28,6 @@ class CreateDivisionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('divisions');
+        //
     }
 }
