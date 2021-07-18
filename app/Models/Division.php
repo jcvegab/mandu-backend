@@ -20,11 +20,10 @@ class Division extends Model
         'parent_id',
     ];
 
-    public function ds(){
-        return $this->hasMany(self::class, 'parent_id', 'id');
+    public function children(){
+        return $this->hasMany(self::class, 'parent_id');
     }
-    public function us(){
-        return $this->belongsTo(self::class, 'id', 'parent_id');
+    public function parent(){
+        return $this->belongsTo(self::class, 'parent_id');
     }
-
 }
