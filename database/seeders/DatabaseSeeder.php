@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Division;
+
 use App\Models\User;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         
-        Division::factory()
-                    ->count(100);
+        $this->call(DivisionSeeder::class);
     }
 }
