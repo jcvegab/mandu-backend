@@ -14,7 +14,7 @@ class UpdateUsersTableWithDivisionsReferences extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('division_id')->nullable();
+            $table->unsignedBigInteger('division_id')->nullable();
             $table->foreign('division_id')
                     ->references('id')->on('divisions')
                     ->onDelete('set null');
