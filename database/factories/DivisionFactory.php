@@ -23,7 +23,7 @@ class DivisionFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->company(),
-            // 'level' => $this->faker->,
+            'level' => $this->rand(1,10),
             // 'parent_id' => $this->,
         ];
     }

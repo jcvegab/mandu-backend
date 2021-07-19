@@ -15,26 +15,30 @@ class DivisionsApiController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|max:45',
+            'name' => 'required|unique:divisions|max:45',
             'level' => 'required',
+            'parent_id' => 'nullable',
         ]);
     
         return Division::create([
             'name' => $validated['name'],
             'level' => $validated['level'],
+            'parent_id' => $validated['parent_id'],
         ]);
     }
 
     public function update(Request $request, Division $division)
     {
         $validated = $request->validate([
-            'name' => 'required|max:45',
+            'name' => 'required|unique:divisions|max:45',
             'level' => 'required',
+            'parent_id' => 'nullable',
         ]);
     
         $success = $division->update([
-            'name' => request('name'),
-            'level' => request('level'),
+            'name' => $validated['name'],
+            'level' => $validated['level'],
+            'parent_id' => $validated['parent_id'],
         ]);
     
         return [
