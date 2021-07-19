@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('/divisions', [DivisionsApiController::class, 'index']);
+Route::get('/divisions/{division}', [DivisionsApiController::class, 'show']);
 Route::post('/divisions', [DivisionsApiController::class, 'store']);
 Route::put('/divisions/{division}', [DivisionsApiController::class, 'update']);
 Route::delete('/divisions/{division}', [DivisionsApiController::class, 'destroy']);

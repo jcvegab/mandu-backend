@@ -9,7 +9,12 @@ class DivisionsApiController extends Controller
 {
     public function index()
     {
-        return Division::all();
+        return Division::with('parent')->get();
+    }
+
+    public function show(Division $division)
+    {
+        return $division;
     }
 
     public function store(Request $request)
